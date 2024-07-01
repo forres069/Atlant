@@ -1,0 +1,116 @@
+.card{
+    width: 282px;
+    height: max-content;
+    background-color: #FFFFFF;
+    border-radius: 24px;
+    padding: 14px;
+    box-shadow: 27.61px 8.37px 41.83px 0px #C7C7C799;
+}
+.card__img{
+    width: 100%;
+    height: 253px;
+    background-image: url("../image1.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 24px;
+}
+.card__title{
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 140%;
+    /* identical to box height, or 30px */
+    display: flex;
+    align-items: center;
+
+    color: #141416;
+
+}
+.card-footer{
+    display: flex;
+    justify-content: space-between;
+}
+.card-price{
+    display: flex;
+    flex-flow: column;
+    gap: 3px;
+}
+.price__box{
+    display: flex;
+    align-items: center;
+
+}
+.card-price__label{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14.1151px;
+    line-height: 150%;
+    /* or 21px */
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.117626px;
+
+    color: #94A3B8;
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+}
+.card__buy{
+    width: 121px;
+    height: 52px;
+}
+.filters{
+    padding-top: 20px;
+    max-width: 322px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    gap: 30px;
+}
+.filters-title{
+    width: 250px;
+    margin: 0 auto;
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 125%;
+    /* or 38px */
+    text-align: center;
+
+    color: #141416;
+}
+.filters-btns-group{
+    display: flex;
+    gap: 10px;
+    max-width: 322px;
+    margin: 0 auto 50px;
+}
+.filters__btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 11px;
+    border: 2px solid #141416;
+    border-radius: 8px;
+    /* label */
+
+    font-family: Manrope, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 150%;
+
+    letter-spacing: 0.141689px;
+
+    color: #1A202C;
+
+}
