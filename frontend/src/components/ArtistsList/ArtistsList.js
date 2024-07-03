@@ -1,15 +1,43 @@
 import React from "react";
 import "../../css/artists-list-styles.css"
 import ArtistCard from "./ArtistCard"
+import PriceFilter from "./PriceFilter";
+import { CSSTransition } from 'react-transition-group';
+
 class ArtistsList extends React.Component {
+     constructor(props) {
+        super(props);
+        this.state = {
+            isPriceFilterVisible: false,
+            minPrice: 0,
+            maxPrice: 1000
+        };
+    }
+
+    togglePriceFilter = () => {
+        this.setState(prevState => ({
+            isPriceFilterVisible: !prevState.isPriceFilterVisible
+        }));
+    };
+
+    handleMinPriceChange = (event) => {
+        this.setState({ minPrice: event.target.value });
+    };
+
+    handleMaxPriceChange = (event) => {
+        this.setState({ maxPrice: event.target.value });
+    };
+
     render() {
+        const { isPriceFilterVisible, minPrice, maxPrice } = this.state;
+
         return <div className="main">
                 <div className="filters">
-                <h1 className="filters-title">
+                <h1 className="filters-title title">
                     Explore Marketplace
                 </h1>
                 <div className="filters-btns-group">
-                    <button className="white-button filters__btn">
+                    <button className="white-button filters__btn" onClick={this.togglePriceFilter}>
                         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.75747 6.51172V7.80336C7.2731 7.68227 6.9502 7.40645 6.9502 7.15754C6.9502 6.9019 7.2731 6.62608 7.75747 6.51172Z" fill="black"/>
                             <path d="M9.57387 9.57942C9.57387 9.82833 9.25097 10.1041 8.7666 10.2252V8.93359C9.25097 9.04796 9.57387 9.32378 9.57387 9.57942Z" fill="black"/>
@@ -30,9 +58,27 @@ class ArtistsList extends React.Component {
                         Город
                     </button>
                 </div>
+                    <CSSTransition
+                    in={isPriceFilterVisible}
+                    timeout={300}
+                    classNames="price-filter"
+                    unmountOnExit
+                >
+                    <div className="price-filter-container">
+                        <PriceFilter
+                            minPrice={minPrice}
+                            maxPrice={maxPrice}
+                            onMinPriceChange={this.handleMinPriceChange}
+                            onMaxPriceChange={this.handleMaxPriceChange}
+                        />
+                    </div>
+                </CSSTransition>
+
             </div>
             <div className="artists">
-                <ArtistCard/>
+                {this.props.users.map((user) =>
+                    <ArtistCard key={user.id} user={user}/>
+                )}
             </div>
         </div>
     }

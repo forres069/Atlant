@@ -9,3 +9,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.main{
+    max-width: 1271px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+.title{
+    width: 250px;
+    margin: 0 auto;
+    padding-top: 20px;
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 125%;
+    /* or 38px */
+    text-align: center;
+
+    color: #141416;
+}
+.main__error{
+
+}

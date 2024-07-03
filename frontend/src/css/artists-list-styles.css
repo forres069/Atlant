@@ -16,6 +16,8 @@
     border-radius: 24px;
 }
 .card__title{
+    margin-bottom: 5px;
+    margin-top: 10px;
     font-family: Poppins, sans-serif;
     font-style: normal;
     font-weight: 600;
@@ -55,10 +57,6 @@
     color: #94A3B8;
 
 
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
 
 }
 .card__buy{
@@ -66,9 +64,8 @@
     height: 52px;
 }
 .filters{
+    max-width: 350px;
     padding-top: 20px;
-    max-width: 322px;
-    margin: 0 auto;
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -88,10 +85,11 @@
     color: #141416;
 }
 .filters-btns-group{
+    max-width: 350px;
     display: flex;
-    gap: 10px;
-    max-width: 322px;
-    margin: 0 auto 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto 50px auto;
 }
 .filters__btn{
     display: flex;
@@ -112,5 +110,4 @@
     letter-spacing: 0.141689px;
 
     color: #1A202C;
-
 }
