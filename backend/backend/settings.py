@@ -17,9 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'v1_artists.apps.V1ArtistsConfig',
 
-    'rest_framework',
     'corsheaders',
     'pyuploadcare.dj',
     'v1_artists',
