@@ -110,11 +110,6 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
 
-UPLOADCARE = {
-    'pub_key': '4892848aaefc43aeea8c',
-    'secret': '4e766ebe8f12d296a58b',
-}
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
