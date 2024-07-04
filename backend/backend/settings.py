@@ -24,7 +24,7 @@ INSTALLED_APPS = [
 
     'corsheaders',
     'pyuploadcare.dj',
-    'v1_artists',
+    'artists',
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
