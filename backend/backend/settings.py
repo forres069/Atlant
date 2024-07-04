@@ -132,7 +132,7 @@ DJOSER = {
 
 UPLOADCARE = {
     'pub_key': getenv(key='UPLOADCARE_PUB_KEY'),
-    'secret': 'UPLOADCARE_SECRET_KEY'
+    'secret': getenv(key='UPLOADCARE_SECRET_KEY'),
 }
 
 SIMPLE_JWT = {
