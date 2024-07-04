@@ -24,7 +24,7 @@ INSTALLED_APPS = [
 
     'corsheaders',
     'pyuploadcare.dj',
-    'v1_artists',
+    'artists',
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
@@ -132,7 +132,7 @@ DJOSER = {
 
 UPLOADCARE = {
     'pub_key': getenv(key='UPLOADCARE_PUB_KEY'),
-    'secret': 'UPLOADCARE_SECRET_KEY'
+    'secret': getenv(key='UPLOADCARE_SECRET_KEY'),
 }
 
 SIMPLE_JWT = {
