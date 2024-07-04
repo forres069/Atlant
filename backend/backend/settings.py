@@ -1,11 +1,15 @@
 from datetime import timedelta
+from os import getenv
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure--o&d@*qf12)5_+$t14mf9zxy=j&tsukny=90145-96a@2qgvi3'
+SECRET_KEY = getenv(key='SECRET_KEY')
 
-DEBUG = True
+DEBUG = not getenv(key='DEBUG') == 'true'
 
 ALLOWED_HOSTS = []
 
@@ -127,8 +131,8 @@ DJOSER = {
 }
 
 UPLOADCARE = {
-    'pub_key': 'your_public_key',
-    'secret': 'your_secret_key'
+    'pub_key': getenv(key='UPLOADCARE_PUB_KEY'),
+    'secret': 'UPLOADCARE_SECRET_KEY'
 }
 
 SIMPLE_JWT = {
