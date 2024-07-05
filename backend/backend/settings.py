@@ -7,7 +7,7 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = getenv(key='SECRET_KEY')
+SECRET_KEY = getenv(key='SECRETKEY')
 
 DEBUG = not getenv(key='DEBUG') == 'true'
 
@@ -110,17 +110,19 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
 
-UPLOADCARE = {
-    'pub_key': '4892848aaefc43aeea8c',
-    'secret': '4e766ebe8f12d296a58b',
-}
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
+
+EMAIL_BACKEND = getenv(key='EMAIL_BACKEND')
+EMAIL_HOST = getenv(key='EMAIL_HOST')
+EMAIL_USE_TLS = getenv(key='EMAIL_USE_TLS')
+EMAIL_PORT = getenv(key='EMAIL_PORT')
+EMAIL_HOST_USER = getenv(key='EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = getenv(key='EMAIL_HOST_PASSWORD')
 
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
