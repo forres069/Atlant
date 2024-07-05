@@ -16,6 +16,7 @@ class ArtistProfileListView(ListAPIView):
     queryset = ArtistProfile.objects.all()
     serializer_class = ArtistProfileSerializer
 
+
     def list(self, request, *args, **kwargs):
         search_query = request.GET.get('search', None)
 
