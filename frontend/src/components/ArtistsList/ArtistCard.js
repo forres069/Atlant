@@ -1,11 +1,7 @@
 import React from "react";
 import "../../css/artists-list-styles.css"
 
-class ArtistCard extends React.Component {
-
-    render() {
-        const { user } = this.props;
-
+const ArtistCard = ({ user }) => {
         return (
             <div className="artist-card card">
                 <div className="card__img" style={{backgroundImage: `url(${user.picture})`}}></div>
@@ -24,7 +20,6 @@ class ArtistCard extends React.Component {
                 </div>
             </div>
         );
-    }
 }
 
 export default ArtistCard;

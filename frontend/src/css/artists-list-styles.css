@@ -64,7 +64,7 @@
     height: 52px;
 }
 .filters{
-    max-width: 350px;
+    max-width: 375px;
     padding-top: 20px;
     display: flex;
     flex-flow: column;
@@ -85,7 +85,7 @@
     color: #141416;
 }
 .filters-btns-group{
-    max-width: 350px;
+    max-width: 375px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
