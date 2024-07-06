@@ -1,5 +1,5 @@
-.idea
-/migrations
+.idea/
+migrations/
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -32,8 +32,7 @@ __pycache__/
 # C extensions
 *.so
 
-# Distribution / packaging
-.Python
+
 build/
 develop-eggs/
 dist/
@@ -181,3 +180,8 @@ dmypy.json
 cython_debug/
 
 /frontend/node_modules/
+<<<<<<< Updated upstream
+=======
+/backend/v1_artists/migrations/
+backend/v1_artists/__pycache__/__init__.cpython-310.pyc
+>>>>>>> Stashed changes
