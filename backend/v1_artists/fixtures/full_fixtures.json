@@ -1,0 +1,90 @@
+[
+  {
+    "model": "v1_artists.userr",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$nG1G2PZKQulj$S5ykF39Xb7XXBc5Z0GhV1HzEw8FCZITeLTs8D0O+b34=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "user1@example.com",
+      "first_name": "John",
+      "last_name": "Doe",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-07-06T00:00:00Z",
+      "image": "static/images/images.png",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "v1_artists.userr",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$wV1G2PZKQulj$S5ykF39Xb7XXBc5Z0GhV1HzEw8FCZITeLTs8D0O+b35=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "user2@example.com",
+      "first_name": "Jane",
+      "last_name": "Smith",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-07-06T00:00:00Z",
+      "image": "static/images/images.png",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "v1_artists.category",
+    "pk": 1,
+    "fields": {
+      "name": "Music"
+    }
+  },
+  {
+    "model": "v1_artists.category",
+    "pk": 2,
+    "fields": {
+      "name": "Painting"
+    }
+  },
+  {
+    "model": "v1_artists.city",
+    "pk": 1,
+    "fields": {
+      "name": "New York"
+    }
+  },
+  {
+    "model": "v1_artists.city",
+    "pk": 2,
+    "fields": {
+      "name": "Los Angeles"
+    }
+  },
+  {
+    "model": "v1_artists.artistprofile",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "picture": null,
+      "price": 150.00,
+      "category": [1],
+      "description": "Musician in New York",
+      "city": 1
+    }
+  },
+  {
+    "model": "v1_artists.artistprofile",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "picture": null,
+      "price": 200.00,
+      "category": [2],
+      "description": "Painter in Los Angeles",
+      "city": 2
+    }
+  }
+]

@@ -1,6 +1,9 @@
-from django.urls import path
-from .views import ArtistProfileListView
+# v1_artists/urls.py
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import ArtistProfileViewSet
+
 
 urlpatterns = [
-    path('list/', ArtistProfileListView.as_view(), name='artists-list'),
+    path('Artists/', ArtistProfileViewSet.as_view({'get': 'list'})),
 ]

@@ -54,6 +54,14 @@ class Userr(AbstractUser):
 User = get_user_model()
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+
+class City(models.Model):
+    name = models.CharField(max_length=100)
+
+
 class ArtistProfile(models.Model):
     user = models.OneToOneField(
         User,
@@ -67,6 +75,9 @@ class ArtistProfile(models.Model):
         blank=True,
         null=True
     )
+    category = models.ManyToManyField(Category, blank=True)
+    description = models.CharField(max_length=100)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.user.username

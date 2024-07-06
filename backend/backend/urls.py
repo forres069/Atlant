@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .yasg import urlpatterns as doc_urls
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('v1_artists/', include('v1_artists.urls')),

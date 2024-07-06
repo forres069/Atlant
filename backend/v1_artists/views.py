@@ -4,25 +4,25 @@ from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 
 from .models import ArtistProfile
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, UpdateAPIView
 from rest_framework.response import Response
-
+from django_filters.rest_framework import DjangoFilterBackend
 from .serializers import ArtistProfileSerializer
+from rest_framework import viewsets
+from .service import ArtistFilter
 
-User = get_user_model()
 
-
-class ArtistProfileListView(ListAPIView):
+class ArtistProfileViewSet(viewsets.ModelViewSet):
     queryset = ArtistProfile.objects.all()
     serializer_class = ArtistProfileSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = ArtistFilter
 
     def list(self, request, *args, **kwargs):
-        search_query = request.GET.get('search', None)
+        queryset = ArtistProfile.objects.all()
+        serializer = self.get_serializer(queryset, many=True)
 
-        if search_query:
-            queryset = self.queryset.filter(user__username__icontains=search_query)
-        else:
-            queryset = self.filter_queryset(self.get_queryset())
-
-        serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
+
+
+
