@@ -1,4 +1,7 @@
 .header{
+    background: #FFFFFF;
+}
+.header__inner{
     max-width: 1251px;
     height: 117px;
     margin: 0 auto;
@@ -51,6 +54,7 @@
     font-size: 16px;
 }
 .black-button{
+    text-decoration: none;
     width: 199px;
     height: 57px;
     border-radius: 16px;

@@ -6,7 +6,7 @@ import priceIcon from "../../icons/price.svg"
 import categoryIcon from "../../icons/category.svg"
 import cityIcon from "../../icons/city.svg"
 
-const ArtistsList = ({ users }) => {
+const ArtistsList = ({ users, error }) => {
     const [isPriceFilterVisible, setIsPriceFilterVisible] = useState(false);
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(1000);
@@ -23,6 +23,12 @@ const ArtistsList = ({ users }) => {
         setMaxPrice(event.target.value);
     };
 
+    if (error) {
+        return <div className="main">
+            <h1 className="title error">Сервер сейчас недоступен</h1>
+        </div>
+    }
+
     return (
         <div className="main">
             <div className="filters">
@@ -31,15 +37,15 @@ const ArtistsList = ({ users }) => {
                 </h1>
                 <div className="filters-btns-group">
                     <button className="white-button filters__btn" onClick={togglePriceFilter}>
-                        <img src={priceIcon}/>
+                        <img src={priceIcon} alt="price icon"/>
                         Прайс
                     </button>
                     <button className="white-button filters__btn">
-                        <img src={categoryIcon}/>
+                        <img src={categoryIcon} alt="category icon"/>
                         Категория
                     </button>
                     <button className="white-button filters__btn">
-                        <img src={cityIcon}/>
+                        <img src={cityIcon} alt="city icon"/>
                         Город
                     </button>
                 </div>

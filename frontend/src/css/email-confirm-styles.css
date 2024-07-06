@@ -1,0 +1,35 @@
+.confirm{
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+.confirm__picture{
+    z-index: -1;
+    width: 279px;
+    height: 245px;
+    margin: 0 auto;
+    border-radius: 13px;
+    background-image: url("../email-confirm-bg.jpeg");
+    background-position: center;
+    background-size: cover;
+}
+.confirm__title{
+    max-width: 300px;
+    margin: 0 auto;
+}
+.confirm__description{
+    max-width: 350px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 177%;
+    /* or 25px */
+    text-transform: capitalize;
+
+    color: #949494;
+
+}
