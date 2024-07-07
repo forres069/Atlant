@@ -9,9 +9,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('v1_artists/', include('v1_artists.urls')),
     path('api/v1/', include('v1_artists.urls')),
+    path('auth/', include('rest_framework_social_oauth2.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('auth/', include('djoser.urls.jwt')),
+
 ]
 
 urlpatterns += doc_urls
