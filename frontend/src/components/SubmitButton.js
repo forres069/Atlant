@@ -1,7 +1,7 @@
 import React from "react";
 import '../css/submit-button-styles.css'
 
-const SubmitButton = ({ btype, text, className }) => {
+const SubmitButton = ({ btype, text, className, onclick }) => {
     if (text == null) {
         text = "Submit"
     }
