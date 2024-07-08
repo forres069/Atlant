@@ -4,6 +4,7 @@
     text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
 
 }
@@ -22,7 +23,7 @@
     margin: 0 auto;
 }
 .confirm__description{
-    max-width: 350px;
+    max-width: 289px;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
