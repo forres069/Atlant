@@ -8,12 +8,11 @@ const Confirm = () => {
                 <div className="confirm__picture"></div>
                 <div className="confirm__text">
                     <h1 className="title confirm__title">
-                        Подтверди свою почту
+                        Код подтверждения отправлен на почту
                     </h1>
                     <p className="confirm__description">
                         На ваш email было отправлено письмо,
-                        с ссылкой для подтверждения! Перейдите по данной
-                        ссылке, чтобы подтвердить почту!
+                        с ссылкой для подтверждения!
                     </p>
                 </div>
                 <form className="confirm__form">
