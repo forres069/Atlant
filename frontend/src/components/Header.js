@@ -25,8 +25,8 @@ const Header = ({ onSearchChange, searchQuery }) => {
                     />
                 </div>
 
-                <Link to="auth" className="header-button black-button">
-                        Войти
+                <Link to="login" className="header-button black-button">
+                    Войти
                 </Link>
             </div>
         </header>)
