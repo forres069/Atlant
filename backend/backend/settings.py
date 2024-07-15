@@ -1,15 +1,20 @@
 from datetime import timedelta
 from os import getenv
 from pathlib import Path
-from dotenv import load_dotenv
-
-load_dotenv()
+# по моему нужно удалить так как всеравно берем через getenv
+# from dotenv import load_dotenv
+# load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = getenv(key='SECRET_KEY')
+SECRET_KEY = 'django-insecure-2xhk@$%d0_#r^ek7hz6yz^-j74&5q44!8v6qvzipoz&3xt+*5s'
 
-DEBUG = not getenv(key='DEBUG') == 'true'
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+# SECRET_KEY = getenv(key='SECRET_KEY')
+
+# DEBUG = not getenv(key='DEBUG') == 'true'
 
 ALLOWED_HOSTS = []
 
@@ -22,12 +27,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'v1_artists',
+    'accounts_api',
+
     'corsheaders',
     'pyuploadcare.dj',
-    'v1_artists',
     'rest_framework',
-    'rest_framework.authtoken',
-    'djoser',
+    'rest_framework_simplejwt',
+
 ]
 
 MIDDLEWARE = [
@@ -39,7 +46,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -110,30 +116,39 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
 
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672/'
+
+# CELERY_RESULT_BACKEND = 'django-db' 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'myyardverify@gmail.com'
+EMAIL_HOST_PASSWORD = 'jrfg gysj kxqa kven'
+
 UPLOADCARE = {
     'pub_key': '4892848aaefc43aeea8c',
     'secret': '4e766ebe8f12d296a58b',
 }
 
 REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
+    )
 }
 
-DJOSER = {
-    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
-    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL': '#/activate/{uid}/{token}',
-    'SEND_ACTIVATION_EMAIL': True,
-    'SERIALIZERS': {},
-}
+AUTH_USER_MODEL = 'accounts_api.Account'
 
-UPLOADCARE = {
-    'pub_key': getenv(key='UPLOADCARE_PUB_KEY'),
-    'secret': 'UPLOADCARE_SECRET_KEY'
-}
+# UPLOADCARE = {
+#     'pub_key': getenv(key='UPLOADCARE_PUB_KEY'),
+#     'secret': 'UPLOADCARE_SECRET_KEY'
+# }
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
