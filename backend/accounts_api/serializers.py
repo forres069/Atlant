@@ -44,5 +44,5 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
     )
 
     def validate(self, attrs):
-        validate_password(attrs.get('password'))
+        validate_password(attrs.get('new_password'))
         return super().validate(attrs)

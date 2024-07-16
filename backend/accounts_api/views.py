@@ -41,7 +41,7 @@ class SignUpAPIView(APIView):
         recipient_list = [user.email]
 
         send_mail_task.delay(subject, message, from_email, recipient_list)
-
+         
 
         user.is_active = True
         user.save()
@@ -278,10 +278,12 @@ class PasswordResetConfirmAPIView(APIView):
             try:
                 uid = urlsafe_base64_decode(uidb64).decode()
                 user = User.objects.get(pk=uid)
+            
             except (TypeError, ValueError, OverflowError, User.DoesNotExist):
                 user = None
 
             if user is not None and default_token_generator.check_token(user, token):
+                
                 user.set_password(new_password)
                 user.save()
                 return Response({'message': 'Пароль успешно сброшен.'})
