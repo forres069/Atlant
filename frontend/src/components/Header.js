@@ -24,7 +24,7 @@ const Header = ({ onSearchChange, searchQuery, openModal }) => {
                     />
                 </div>
 
-                <button className="header-button black-button" onClick={openModal}>Вход</button>
+                <button className="header-button black-button" onClick={openModal}>ВХОД</button>
             </div>
         </header>)
 }
