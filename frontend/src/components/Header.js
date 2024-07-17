@@ -1,11 +1,10 @@
 import React from "react";
-import {Link} from 'react-router-dom';
 import "../css/header-styles.css"
 import "../favicon.svg"
 import logoIcon from "../icons/logo.svg"
 import searchIcon from "../icons/search.svg"
 
-const Header = ({ onSearchChange, searchQuery }) => {
+const Header = ({ onSearchChange, searchQuery, openModal }) => {
         return (
         <header className="header">
             <div className="header__inner">
@@ -25,9 +24,7 @@ const Header = ({ onSearchChange, searchQuery }) => {
                     />
                 </div>
 
-                <Link to="login" className="header-button black-button">
-                    Войти
-                </Link>
+                <button className="header-button black-button" onClick={openModal}>Вход</button>
             </div>
         </header>)
 }

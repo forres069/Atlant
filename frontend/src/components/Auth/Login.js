@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import InputBox from "./InputBox";
-import SubmitButton from "../SubmitButton"
+import SubmitButton from "../SubmitButton";
 import "../../css/auth-styles.css";
 
-const Login = () => {
+const Login = ({ onClose }) => {
     const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -17,13 +16,14 @@ const Login = () => {
         setError('');
         try {
             const response = await axios.post('http://127.0.0.1:8000/auth/token/login/', {
+                email,
                 password,
-                username,
             });
             if (response.status === 200) {
-                const token  = response.data.auth_token;cd
+                const token = response.data.auth_token;
                 localStorage.setItem('authToken', token);
                 navigate('/');
+                onClose();
             } else {
                 console.error('Ошибка при создании пользователя');
             }
@@ -39,28 +39,23 @@ const Login = () => {
     };
 
     return (
-        <div className="main">
-            <div className="auth">
-                <h1 className="title auth__title">Вход в аккаунт</h1>
-                <form className="auth__form" onSubmit={handleSubmit}>
-                    <span className="auth__errors">
-                        {error && <div className="auth__error">{JSON.stringify(error)}</div>}
-                    </span>
-                    <div className="auth__input">
-                        <label className="auth__label">Email</label>
-                        <InputBox placeholder="Твой email.." type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    </div>
-                    <div className="auth__input">
-                        <label className="auth__label">Ник</label>
-                        <InputBox placeholder="Твой креативный ник.." type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-                    </div>
-                    <div className="auth__input">
-                        <label className="auth__label">Пароль</label>
-                        <InputBox type="password" placeholder="Твой пароль.." value={password} onChange={(e) => setPassword(e.target.value)} />
-                    </div>
-                    <SubmitButton className="auth__button" type="submit" text="Создать"/>
-                </form>
-            </div>
+        <div className="auth">
+            <button className="close-button" onClick={onClose}>×</button>
+            <h1 className="title auth__title">Вход</h1>
+            <form className="auth__form" onSubmit={handleSubmit}>
+                <span className="auth__errors">
+                    {error && <div className="auth__error">{JSON.stringify(error)}</div>}
+                </span>
+                <div className="auth__input">
+                    <label className="auth__label">Email</label>
+                    <InputBox placeholder="Твой email.." type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                </div>
+                <div className="auth__input">
+                    <label className="auth__label">Пароль</label>
+                    <InputBox type="password" placeholder="Твой пароль.." value={password} onChange={(e) => setPassword(e.target.value)} />
+                </div>
+                <SubmitButton className="auth__button" type="submit" text="Войти"/>
+            </form>
         </div>
     );
 };

@@ -7,6 +7,7 @@ import Signup from "./components/Auth/Signup"
 import Login from "./components/Auth/Login"
 import Activate from "./components/EmailConfirm/Activate"
 import Confirm from "./components/EmailConfirm/Confirm"
+import Modal from "./components/Modal"
 import axios from "axios";
 
 
@@ -14,15 +15,21 @@ const App = () => {
     const [users, setUsers] = useState([]);
     const [error, setError] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
 
     useEffect(() => {
         const token = localStorage.getItem('authToken') ;
         console.log(`JWT ${token}`)
-        axios.get("http://127.0.0.1:8000/v1_artists/list/",{
-                headers: {
-                    'Authorization': `JWT ${token}`
-                }
-            }
+        axios.get("http://127.0.0.1:8000/v1_artists/list/"
         )
         .then((res) => {
             setUsers(res.data);
@@ -39,24 +46,27 @@ const App = () => {
     const filteredUsers = users.filter(user =>
         user.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
+
     return (
             <BrowserRouter>
-                <Header searchQuery={searchQuery} onSearchChange={handleSearchChange} />
-                      <Routes>
-                          <Route
-                              path="/"
-                              index
-                              element={
-                              <ArtistsList
-                                 users={filteredUsers}
-                                 error={error}/>
-                              }
-                          />
-                          <Route path="signup" element={<Signup />} />
-                          <Route path="login" element={<Login />} />
-                          <Route path="confirm" element={<Confirm/>} />
-                          <Route path="activate/:uid/:token" element={<Activate/>}/>
-                      </Routes>
+                <Header searchQuery={searchQuery} onSearchChange={handleSearchChange} openModal={openModal} />
+                <Modal isOpen={isModalOpen} onClose={closeModal}>
+                    {isLogin ? <Login onClose={closeModal} /> : <Signup onClose={closeModal} />}
+                   
+                </Modal>
+                <Routes>
+                    <Route
+                        path="/"
+                        index
+                        element={
+                        <ArtistsList
+                            users={filteredUsers}                                
+                            error={error}/>
+                        }
+                    />
+                    <Route path="confirm" element={<Confirm/>} />
+                    <Route path="activate/:uid/:token" element={<Activate/>}/>
+                </Routes>
             </BrowserRouter>
     );
 }
