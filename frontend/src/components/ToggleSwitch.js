@@ -8,15 +8,15 @@ const ToggleSwitch = ({ isOn, handleToggle }) => {
                 checked={isOn}
                 onChange={handleToggle}
                 className="toggle-switch-checkbox"
-                id={`toggle-switch`}
+                id="toggle-switch"
                 type="checkbox"
             />
             <label
                 className="toggle-switch-label"
-                htmlFor={`toggle-switch`}
+                htmlFor="toggle-switch"
             >
-                <span className={`toggle-switch-inner`}/>
-                <span className={`toggle-switch-switch`} />
+                <span className="toggle-switch-inner" />
+                <span className="toggle-switch-switch" />
             </label>
         </div>
     );
