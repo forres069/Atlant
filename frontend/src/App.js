@@ -8,6 +8,7 @@ import Login from "./components/Auth/Login"
 import Activate from "./components/EmailConfirm/Activate"
 import Confirm from "./components/EmailConfirm/Confirm"
 import Modal from "./components/Modal"
+import ToggleSwitch from './components/ToggleSwitch';
 import axios from "axios";
 
 
@@ -24,6 +25,10 @@ const App = () => {
 
     const closeModal = () => {
         setIsModalOpen(false);
+    };
+
+    const handleToggle = () => {
+        setIsLogin(!isLogin);
     };
 
     useEffect(() => {
@@ -52,7 +57,7 @@ const App = () => {
                 <Header searchQuery={searchQuery} onSearchChange={handleSearchChange} openModal={openModal} />
                 <Modal isOpen={isModalOpen} onClose={closeModal}>
                     {isLogin ? <Login onClose={closeModal} /> : <Signup onClose={closeModal} />}
-                   
+                    <ToggleSwitch isOn={isLogin} handleToggle={handleToggle} />
                 </Modal>
                 <Routes>
                     <Route

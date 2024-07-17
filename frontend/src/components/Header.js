@@ -9,7 +9,7 @@ const Header = ({ onSearchChange, searchQuery, openModal }) => {
         <header className="header">
             <div className="header__inner">
                 <div className="header-logo logo">
-                    <img src={logoIcon}/>
+                    <img src={logoIcon} alt="logo icon"/>
                 </div>
 
 
