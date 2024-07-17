@@ -2,9 +2,11 @@ import React, { useState }  from "react";
 import "../../css/artists-list-styles.css"
 import ArtistCard from "./ArtistCard"
 import PriceFilter from "./PriceFilter";
-import priceIcon from "../../icons/price.svg"
+import priceIcon from "../../icons/price.svg";
+import Preview from "../Preview/Preview"
 import categoryIcon from "../../icons/category.svg"
 import cityIcon from "../../icons/city.svg"
+
 
 const ArtistsList = ({ users, error }) => {
     const [isPriceFilterVisible, setIsPriceFilterVisible] = useState(false);
@@ -29,8 +31,10 @@ const ArtistsList = ({ users, error }) => {
         </div>
     }
 
+
     return (
         <div className="main">
+            <Preview/>
             <div className="filters">
                 <h1 className="filters-title title">
                     Explore Marketplace

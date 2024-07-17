@@ -1,0 +1,219 @@
+.preview{
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 35px 15px 35px 15px;
+}
+.hr{
+  width: 195px;
+  margin-bottom: 10px;
+}
+.preview-text{
+  width: 410px;
+}
+.preview-text-title{
+  margin-bottom: 16px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 75px;
+  line-height: 120%;
+  letter-spacing: -3px;
+  text-transform: capitalize;
+
+  color: #141416;
+}
+.preview-text-description{
+  margin-bottom: 45px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  /* or 156% */
+
+  color: #676767;
+}
+.preview-text-description b{
+  color: #141416;
+}
+.preview-text-buttons-group{
+  display: flex;
+  gap: 23px;
+  margin-bottom: 20px;
+}
+.explore{
+  width: 179px;
+  height: 60px;
+}
+.create{
+  width: 138px;
+  height: 60px;
+}
+.preview-text-features{
+  display: flex;
+  justify-content: space-between;
+}
+.preview-text-features__item h3{
+  font-family: Public Sans, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 46px;
+  /* identical to box height, or 125% */
+  text-align: center;
+
+  color: #141416;
+
+}
+.preview-text-features__item small{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12.257px;
+  line-height: 18px;
+  /* identical to box height, or 150% */
+  text-align: center;
+
+  color: #848586;
+}
+:root {
+  --color-bg: rgb(0 0 0 / 3%);
+  --color-blue: #2196F3;
+  --color-yellow: #FDD835;
+  --color-red: #E53935;
+  --color-green: #388E3C;
+
+  --card-width: 391px;
+  --card-aspect-ratio: 16 / 9;
+
+  --arrow-size: 2.5rem;
+  --arrow-icon-size: 1.5rem;
+  --arrow-icon-color: rgb(0 0 0 / 50%);
+  --arrow-icon-color-hover: rgb(0 0 0 / 75%);
+  --arrow-bg-color: transparent;
+  --arrow-bg-color-hover: rgb(0 0 0 / 10%);
+
+  --bullet-size: .5rem;
+
+  --transition-speed: .5s;
+  --transition-bezier: cubic-bezier(0.55, -0.85, 0.2, 1.85);
+
+  --icon-arrow: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIwLDExVjEzSDhMMTMuNSwxOC41TDEyLjA4LDE5LjkyTDQuMTYsMTJMMTIuMDgsNC4wOEwxMy41LDUuNUw4LDExSDIwWiIgLz48L3N2Zz4=");
+}
+
+.slider {
+  position: relative;
+  width: 391px;
+  height: 394px;
+}
+
+.slider__cards {
+  width: var(--card-width);
+  aspect-ratio: var(--card-aspect-ratio);
+  position: relative;
+  margin-inline: auto;
+}
+
+.slider__card {
+  width: var(--card-width);
+  height: 394px;
+  aspect-ratio: var(--card-aspect-ratio);
+  border-radius: 25px;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease-in-out;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.slider__card.active {
+  opacity: 1;
+}
+
+.slider__arrows {
+  position: relative;
+  top: 180px;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  margin: 75px auto;
+  align-items: center;
+  width: 166px;
+  height: 29px;
+  padding: 22px;
+  background: #FCFCFD;
+  box-shadow: 0 43px 34px -25px rgba(15, 15, 15, 0.12);
+  border-radius: 17px;
+}
+
+.slider__arrow, .navigation__arrow {
+  height: var(--arrow-size);
+  width: var(--arrow-size);
+  background-color: var(--arrow-bg-color);
+  border-radius: 50%;
+  border: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.slider__arrow.disabled {
+  opacity: .25;
+  pointer-events: none;
+}
+
+.slider__arrow:is(:hover, :focus-visible) {
+  background-color: var(--arrow-bg-color-hover);
+}
+
+.slider__arrow::after {
+  content: '';
+  display: block;
+  height: var(--arrow-icon-size);
+  width: var(--arrow-icon-size);
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: var(--icon-arrow);
+  -webkit-mask-image: var(--icon-arrow);
+  background-color: var(--arrow-icon-color);
+}
+
+.slider__arrow:is(:hover, :focus-visible)::after {
+  background-color: var(--arrow-icon-color-hover);
+}
+
+.slider__arrow--next::after {
+  transform: rotate(180deg);
+}
+
+.slider__bullets {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  position: absolute;
+  left: 0;
+  bottom: 1rem;
+  pointer-events: none;
+}
+
+.slider__bullet {
+  display: block;
+  height: var(--bullet-size);
+  background-color: white;
+  border: none;
+  border-radius: 2rem;
+  transition: width var(--transition-speed) var(--transition-bezier);
+}
+
+.slider__bullet.active {
+  width: calc(var(--bullet-size) * 3);
+}

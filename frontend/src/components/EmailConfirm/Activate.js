@@ -5,14 +5,14 @@ import axios from 'axios';
 
 const Activate = () => {
     const { uid, token } = useParams();
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [setIsSubmitting] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault(); 
         setIsSubmitting(true);
         try {
-            const response = await axios.post('http://127.0.0.1:8000/auth/users/activation/', {
+            await axios.post('http://127.0.0.1:8000/auth/users/activation/', {
                 uid,
                 token
             });
