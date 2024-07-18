@@ -1,20 +1,15 @@
 from datetime import timedelta
 from os import getenv
 from pathlib import Path
-# по моему нужно удалить так как всеравно берем через getenv
-# from dotenv import load_dotenv
-# load_dotenv()
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-2xhk@$%d0_#r^ek7hz6yz^-j74&5q44!8v6qvzipoz&3xt+*5s'
+SECRET_KEY = getenv(key='SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-# SECRET_KEY = getenv(key='SECRET_KEY')
-
-# DEBUG = not getenv(key='DEBUG') == 'true'
+DEBUG = not getenv(key='DEBUG') == 'true'
 
 ALLOWED_HOSTS = []
 
@@ -27,14 +22,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'v1_artists',
-    'accounts_api',
-
     'corsheaders',
     'pyuploadcare.dj',
+    'v1_artists',
     'rest_framework',
-    'rest_framework_simplejwt',
-
+    'rest_framework.authtoken',
+    'djoser',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -46,6 +40,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -116,39 +111,35 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
 
-CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672/'
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
 
-# CELERY_RESULT_BACKEND = 'django-db' 
+EMAIL_BACKEND = getenv(key='EMAIL_BACKEND')
+EMAIL_HOST = getenv(key='EMAIL_HOST')
+EMAIL_USE_TLS = getenv(key='EMAIL_USE_TLS')
+EMAIL_PORT = getenv(key='EMAIL_PORT')
+EMAIL_HOST_USER = getenv(key='EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = getenv(key='EMAIL_HOST_PASSWORD')
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'myyardverify@gmail.com'
-EMAIL_HOST_PASSWORD = 'jrfg gysj kxqa kven'
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    'SERIALIZERS': {},
+}
 
 UPLOADCARE = {
-    'pub_key': '4892848aaefc43aeea8c',
-    'secret': '4e766ebe8f12d296a58b',
+    'pub_key': getenv(key='UPLOADCARE_PUB_KEY'),
+    'secret': getenv(key='UPLOADCARE_SECRET_KEY'),
 }
-
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny'
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
-}
-
-AUTH_USER_MODEL = 'accounts_api.Account'
-
-# UPLOADCARE = {
-#     'pub_key': getenv(key='UPLOADCARE_PUB_KEY'),
-#     'secret': 'UPLOADCARE_SECRET_KEY'
-# }
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
