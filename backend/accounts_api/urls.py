@@ -17,4 +17,6 @@ urlpatterns = [
         views.PasswordResetConfirmAPIView.as_view(),
         name='password_reset_confirm'
     ),
+    path("callback/", views.GoogleLoginApi.as_view(), name="callback-raw"),
+    path("redirect/", views.GoogleLoginRedirectApi.as_view(), name="redirect-raw"),
 ]
